@@ -15,8 +15,9 @@
 /**
  * 
  */
-
-DECLARE_DELEGATE_OneParam(FAssetThumbnailSelected, const FMeshData&);
+DECLARE_DELEGATE_OneParam(FAssetTextureThumbnailSelected, const FTextureData&);
+DECLARE_DELEGATE_OneParam(FAssetMaterialThumbnailSelected, const FMaterialData&);
+DECLARE_DELEGATE_OneParam(FAssetMeshThumbnailSelected, const FMeshData&);
 
 class ASSIGNMENT4_API SMeshSelectionScrollBox : public SCompoundWidget
 {
@@ -42,8 +43,13 @@ public:
 
 	void RefreshContent();
 
-	template<typename T> void DisplayThumbnailText(TArray<T> DataArray);
-	FAssetThumbnailSelected OnThumbnailSelected;
+	void DisplayMeshes(TArray<FMeshData> DataArray);
+	void DisplayMaterials(TArray<FMaterialData> DataArray);
+	void DisplayTextures(TArray<FTextureData> DataArray);
+
+	FAssetTextureThumbnailSelected OnTextureThumbnailSelected;
+	FAssetMaterialThumbnailSelected OnMaterialThumbnailSelected;
+	FAssetMeshThumbnailSelected OnMeshThumbnailSelected;
 
 	AssetType AssetT;
 };

@@ -12,5 +12,15 @@ void UOverlayWidget::InitializeWidget(UMeshAssetManager* MeshDataAsset)
 
 void UOverlayWidget::ReceiveMeshData(FMeshData MeshData)
 {
-	ThumbnailDelegate.Broadcast(MeshData);
+	MeshThumbnailDelegate.Broadcast(MeshData);
+}
+
+void UOverlayWidget::ReceiveMeshData(FMaterialData MaterialData)
+{
+	MaterialThumbnailDelegate.Broadcast(MaterialData);
+}
+
+void UOverlayWidget::ReceiveMeshData(FTextureData TextureData)
+{
+	TextureThumbnailDelegate.Broadcast(TextureData);
 }

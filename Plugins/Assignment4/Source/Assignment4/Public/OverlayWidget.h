@@ -20,11 +20,21 @@ public:
 	void InitializeWidget(UMeshAssetManager* MeshDataAsset);
 	//UFUNCTION(BlueprintAssignableEvent)
 	UPROPERTY(BlueprintAssignable, Category = "Overlay Widget")
-	FAssetThumbnailSelectedEvent ThumbnailDelegate;
+	FMeshAssetThumbnailSelectedEvent MeshThumbnailDelegate;
+
+	UPROPERTY(BlueprintAssignable, Category = "Overlay Widget")
+	FMaterialAssetThumbnailSelectedEvent MaterialThumbnailDelegate;
+
+	UPROPERTY(BlueprintAssignable, Category = "Overlay Widget")
+	FTextureAssetThumbnailSelectedEvent TextureThumbnailDelegate;
+
 
 	UFUNCTION(BlueprintCallable, Category = "Overlay Widget")
 	void ReceiveMeshData(FMeshData MeshData);
 
+	void ReceiveMeshData(FMaterialData MaterialData);
+
+	void ReceiveMeshData(FTextureData TexureData);
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnMeshDataInitialization(const UMeshAssetManager* MeshDataAsset);
 };

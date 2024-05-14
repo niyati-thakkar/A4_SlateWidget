@@ -6,17 +6,17 @@
 
 void AInteractiveArchController::SpawnMesh(const FMeshData& MeshData)
 {
-	/*if (MeshData.MeshType) {
-		FBox BoundingBox = MeshData.MeshType->GetBoundingBox();
+	if (MeshData.Type) {
+		FBox BoundingBox = MeshData.Type->GetBoundingBox();
 		FVector MinBounds = BoundingBox.Min;
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 		if (AStaticMeshActor* MeshComponent = GetWorld()->SpawnActor<AStaticMeshActor>(LastHitLocation - MinBounds, FRotator(0), SpawnParameters)) {
 			MeshComponent->SetMobility(EComponentMobility::Movable);
-			MeshComponent->GetStaticMeshComponent()->SetStaticMesh(MeshData.MeshType);
+			MeshComponent->GetStaticMeshComponent()->SetStaticMesh(MeshData.Type);
 		}
-	}*/
+	}
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("hello"));
 
 }
@@ -81,7 +81,9 @@ void AInteractiveArchController::BeginPlay() {
 	if (OverlayWidgetClass) {
 		OverlayWidget = CreateWidget<UOverlayWidget>(this, OverlayWidgetClass);
 		if (OverlayWidget) {
-			OverlayWidget->ThumbnailDelegate.AddDynamic(this, &AInteractiveArchController::SpawnMesh);
+			OverlayWidget->MeshThumbnailDelegate.AddDynamic(this, &AInteractiveArchController::SpawnMesh);
+			//OverlayWidget->MaterialThumbnailDelegate.AddDynamic(this, &AInteractiveArchController::SpawnMesh);
+			//OverlayWidget->TextureThumbnailDelegate.AddDynamic(this, &AInteractiveArchController::SpawnMesh);
 		}
 	}
 }

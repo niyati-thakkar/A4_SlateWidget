@@ -13,7 +13,9 @@
  * 
  */
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAssetThumbnailSelectedEvent, const FMeshData&, MeshData);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMeshAssetThumbnailSelectedEvent, const FMeshData&, MeshData);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMaterialAssetThumbnailSelectedEvent, const FMaterialData&, MeshData);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTextureAssetThumbnailSelectedEvent, const FTextureData&, MeshData);
 
 UCLASS()
 class ASSIGNMENT4_API UMeshSelectionScrollBox : public UWidget
@@ -26,6 +28,8 @@ protected:
 
 	virtual const FText GetPaletteCategory() override;
 	void HandleAssetThumbnailSelected(const FMeshData& MeshData);
+	void HandleAssetThumbnailSelected(const FMaterialData& MeshData);
+	void HandleAssetThumbnailSelected(const FTextureData& MeshData);
 private:
 	TSharedPtr<SMeshSelectionScrollBox> ScrollableAssetBox;
 
@@ -38,7 +42,14 @@ public:
 	float ThumbnailSize = 1;
 
 	UPROPERTY(BlueprintAssignable, Category = "MeshData")
-	FAssetThumbnailSelectedEvent OnAssetThumbnailSelected;
+	FMeshAssetThumbnailSelectedEvent OnMeshAssetThumbnailSelected;
+
+	UPROPERTY(BlueprintAssignable, Category = "MeshData")
+	FMaterialAssetThumbnailSelectedEvent OnMaterialAssetThumbnailSelected;
+
+	UPROPERTY(BlueprintAssignable, Category = "MeshData")
+	FTextureAssetThumbnailSelectedEvent OnTextureAssetThumbnailSelected;
+
 
 	void SynchronizeProperties() override;
 };

@@ -29,6 +29,9 @@ struct FMeshData {
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UStaticMesh* Type;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	UTexture2D* Icon;
 };
 
 
@@ -42,6 +45,9 @@ struct FMaterialData {
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UMaterialInterface* Type;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	UTexture2D* Icon;
+
 };
 
 USTRUCT(BlueprintType)
@@ -53,6 +59,7 @@ struct FTextureData {
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UTexture* Type;
+
 };
 
 
@@ -71,5 +78,5 @@ public:
 	TArray<FMaterialData> MaterialDataArray;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Texture")
-	TArray<FTextureData> MeshTextureArray;
+	TArray<FTextureData> TextureDataArray;
 };
